@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>$watch</title>
+<script src="../js/angular.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/todc-bootstrap.css">
+<style>
+.wrap {
+	padding: 50px;
+}
+.form span:first-child {
+	display: inline-block;
+	width: 70px;
+	text-align: left;
+}
+.form input {
+	width: 80px;
+}	
+</style>
+</head>
+<body>
+<div class="wrap" ng-controller="CartController">
+	<div class="form" ng-repeat="item in items">
+		<span>{{item.title}}</span>
+		<input type="text" ng-model="item.quantity">
+		<span>{{item.price | currency}}</span>
+		<span>{{item.price * item.quantity | currency}}</span>
+	</div>
+	<div>Total: {{totalCart() | currency}}</div>
+	<div>Discount: {{bill.discount | currency}}</div>
+	<div>Subtotal: {{subtotal() | currency}}</div>
+</div>
+<script>
+function CartController($scope){
+	$scope.bill = {};  // 初始化bill
+
+	$scope.items = [
+		{title: 'Paint pots', quantity: 8, price: 3.95},
+		{title: 'Polka dots', quantity: 17, price: 12.95},
+		{title: 'Pebbles', quantity: 5, price: 6.95}
+	]; // 初始化数据模型
+
+	$scope.totalCart = function(){
+		var total = 0;
+		for(var i = 0, len = $scope.items.length; i < len; i++){
+			total = total + $scope.items[i].price * $scope.items[i].quantity;
+		}
+		console.log('debugger'); // 6次
+		
+		return total;
+	};
+
+	$scope.subtotal = function(){
+		return $scope.totalCart() - $scope.bill.discount;
+	};
+
+	function calculateDiscount(newValue, oldValue, scope){
+		$scope.bill.discount = newValue > 100 ? 10 : 0;
+	}
+
+	$scope.$watch($scope.totalCart, calculateDiscount);
+}	
+</script>
+</body>
+</html>

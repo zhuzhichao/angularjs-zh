@@ -1,0 +1,40 @@
+<!doctype html>
+<html ng-app="AMail">
+<head>
+<script src="../../js/angular.min.js"></script>
+<script src='controllers.js'></script>
+<title>邮件应用程序</title>
+<style>
+h1 {
+	background:#f3f3f3;
+}
+.view {
+    width: 720px;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table td, table th {
+	border: 1px solid #CCC;
+	padding: 5px;
+	line-height: 28px
+}
+.detail-item {
+    line-height: 28px;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+.detail-msg {
+    line-height: 24px;
+    padding: 5px;
+    margin: 10px 0;
+    border: 1px dashed #CCC;
+}	
+</style>
+</head>
+<body>
+	<h1>A-Mail</h1>
+	<div class="view" ng-view></div>
+</body>
+</html>

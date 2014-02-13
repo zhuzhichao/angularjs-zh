@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>form input</title>
+<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<form ng-controller="SomeController">
+	<input type="checkbox" ng-model="youCheckedIt">
+	<button ng-click="change()">set false</button>
+</form>
+<script>
+function SomeController($scope){
+
+	$scope.youCheckedIt = true;
+
+	$scope.change = function(){
+
+		$scope.youCheckedIt = false;
+
+	};
+
+}	
+</script>	
+</body>
+</html>

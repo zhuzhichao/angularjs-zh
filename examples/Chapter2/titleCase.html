@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>自定义过滤器</title>
+<script src="../js/angular.min.js"></script>
+<style>
+h1 {font-size: 16px; font-weight: bold;}	
+</style>
+</head>
+<body ng-app="HomeModule" ng-controller="HomeController">
+<h1>{{pageHeading | titleCase}}</h1>
+
+<script>
+function HomeController($scope){
+	$scope.pageHeading = 'behold the majesty of your page title';	
+}
+
+var homeModule = angular.module('HomeModule', []);
+homeModule.filter('titleCase', function(){
+	var titleCaseFilter = function(input){
+		var words = input.split(' ');
+
+		for (var i = 0; i < words.length; i++) {
+			words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+		}
+
+		return words.join(' ');
+	};
+
+	return titleCaseFilter;
+});	
+</script>	
+</body>
+</html>

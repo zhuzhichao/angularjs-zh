@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>disabled item</title>
+<script src="../js/angular.min.js"></script>
+<style type="text/css">
+.menu-disabled-true {
+	color: #ccc;
+}
+</style>
+</head>
+<body>
+<div ng-controller="DeathrayMenuController">
+	<ul>
+		<li class="menu-disabled-{{isDisabled}}" ng-click="stun()">Stun</li>
+		<li ng-click="disintegrate()">Disintegrate</li>
+		<li ng-click="erase()">Erase from history</li>
+	</ul>
+	<p><button ng-click="undisabled()">undisabled Stun</button></p>
+</div>
+<script>
+	function DeathrayMenuController($scope){
+		$scope.isDisabled = false;
+
+		$scope.stun = function(){
+			//// stun target, then disable menu to allow regeneration
+			$scope.isDisabled = true;
+		};
+
+		$scope.undisabled = function(){
+			$scope.isDisabled = false;
+		};
+
+	}    
+</script>    
+</body>
+</html>

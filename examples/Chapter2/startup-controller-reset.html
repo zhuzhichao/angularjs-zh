@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>StartUp Rest</title>
+<script src="../js/angular.min.js"></script>
+</head>
+<body>
+<form ng-controller="StartUpController">
+	<p>Starting: <input type="text" ng-change="computedNeeded()" ng-model="funding.startingEstimate"></p>
+	<p>Recommendation: {{funding.needed}}</p>
+	<button ng-click="requestFunding()">Fund my startup</button>
+	<button ng-click="reset()">Rest</button>
+</form>
+<script>
+	function StartUpController($scope){
+
+		$scope.funding = { startingEstimate: 0 };
+		$scope.computedNeeded = function(){
+			$scope.funding.needed = $scope.funding.startingEstimate * 10;
+		};
+
+		$scope.requestFunding = function(){
+			window.alert('Sorry, please get more customers first.');
+		};
+
+		$scope.reset = function(){
+			$scope.funding.startingEstimate = 0;
+			$scope.funding.needed = 0;
+		};
+
+	}
+</script>	
+</body>
+</html>

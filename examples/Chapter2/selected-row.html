@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>select row</title>
+<script src="../js/angular.min.js"></script>
+<style>
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+.selected {
+	background-color: lightgreen;
+}
+table td {
+	padding: 5px 10px;
+	border: 1px solid #ccc;
+}
+</style>
+</head>
+<body>
+<table ng-controller="RestaurantTableController">
+	<tr ng-repeat="restaurant in directory" ng-click="selectRestaurant($index)" ng-class="{selected: $index==selectedRow}">
+		<td>{{restaurant.name}}</td>
+		<td>{{restaurant.cuisine}}</td>
+	</tr>
+</table>  
+<script>
+function RestaurantTableController($scope) {
+	$scope.directory = [{name:'The Handsome Heifer', cuisine:'BBQ'},
+							{name:'Green\'s Green Greens', cuisine:'Salads'},
+							{name:'House of Fine Fish', cuisine:'Seafood'}];
+	//数据, 渲染表格.
+
+	$scope.selectRestaurant = function(row) {
+		$scope.selectedRow = row;
+	};
+	//点击时传入行号索引, 根据行号索引匹配当前行行号, 相等则设置高亮样式
+}	
+</script>
+</body>
+</html>

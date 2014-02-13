@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>显示文本</title>
+<script src="../js/angular.min.js"></script>
+</head>
+<body ng-controller="DisplayText">
+<!--双花括号-->
+<h1>{{title}}</h1>
+<!--ng-bind-->
+<h2 ng-bind="subTitle"></h2>
+
+<script type="text/javascript">
+function DisplayText($scope){
+
+	$scope.title = '主标题';
+	$scope.subTitle = '副标题';
+
+}	
+</script>	
+</body>
+</html>

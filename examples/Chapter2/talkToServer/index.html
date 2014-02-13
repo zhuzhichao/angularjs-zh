@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" ng-app>
+<head>
+<meta charset="UTF-8">
+<title>服务器通信</title>
+<script src="../../js/angular.min.js"></script>
+<style>
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+table td {
+	border: 1px solid #ccc;
+	padding: 5px;
+	line-height: 26px;
+}
+</style>
+</head>
+<body ng-controller="ShoppingController">
+<h1>Products</h1>
+<table>
+	<tr ng-repeat="item in items">
+		<td>{{item.title}}</td>
+		<td>{{item.description}}</td>
+		<td>{{item.price | currency}}</td>
+	</tr>
+</table>
+<script>
+function ShoppingController($scope, $http){
+	$http.get('server.php').success(function(data, status, headers, config){
+		$scope.items = data;
+	});
+}
+</script>
+</body>
+</html>
